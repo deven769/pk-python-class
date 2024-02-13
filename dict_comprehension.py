@@ -1,5 +1,5 @@
-# result = { i:i**2 for i in range(5) }
-# print(result)
+result = { i:i**2 for i in range(5) }
+print(result)
 
 
 ### map, filter, reduce

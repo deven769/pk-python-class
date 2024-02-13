@@ -10,10 +10,10 @@ for key, value in this_dict.items():
 	# print(this_dict[i])
 
 
-# this_dict.pop("age")
+this_dict.pop("age")
 
-# this_dict['name'] = 'shyam'
-# print(this_dict)
+this_dict['name'] = 'shyam'
+print(this_dict)
 
-# print(this_dict.get('name'))
+print(this_dict.get('name'))
 

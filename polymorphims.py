@@ -1,27 +1,31 @@
-# class Animal:
-#     def speak(self):
-#         pass
+class Animal:
+    def speak(self):
+        pass
 
-# class Dog(Animal):
-#     def speak(self):
-#         return "Woof!"
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
 
-# class Cat(Animal):
-#     def speak(self):
-#         return "Meow!"
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
 
-# def make_animal_speak(animal):
-#     return animal.speak()
+def make_animal_speak(animal):
+    return animal.speak()
 
-# # Creating instances of different classes
-# dog = Dog()
-# cat = Cat()
+# Creating instances of different classes
+dog = Dog()
+cat = Cat()
 
-# # Calling the same method on different objects
-# print(make_animal_speak(dog))  # Output: Woof!
-# print(make_animal_speak(cat))  # Output: Meow!
+# Calling the same method on different objects
+print(make_animal_speak(dog))  # Output: Woof!
+print(make_animal_speak(cat))  # Output: Meow!
 
-__a = 1
+
+
+
+##encapulation
+
 
 class Math:
     def __init__(self, b, c):
