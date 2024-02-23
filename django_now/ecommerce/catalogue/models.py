@@ -18,7 +18,7 @@ class Product(models.Model):
 	quantity = models.IntegerField(default = 1)
 	image = models.ImageField(upload_to = 'products', null= True, blank = True)
 	description = models.CharField(max_length = 300, null = True, blank = True)
-	related_products = models.ManyToManyField('self', blank = True, null = True, related_name = 'related_products')
+	related_products = models.ManyToManyField('self', blank = True)
 	is_featured = models.BooleanField(default = False)
 	is_best_seller = models.BooleanField(default = False)
 

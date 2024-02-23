@@ -7,6 +7,5 @@ from .models import Product
 def index(request):
 	if request.method == 'GET':
 		products = Product.objects.all()
-
 		print(products)
-		return render(request, 'client/index.html', {"products": products})
+		return render(request, 'base.html', {"products": products})
