@@ -6,6 +6,5 @@ from .models import Product
 
 def index(request):
 	if request.method == 'GET':
-		products = Product.objects.all()
-		print(products)
-		return render(request, 'base.html', {"products": products})
+		best_seller = Product.objects.filter(is_best_seller = True)
+		return render(request, 'client/index.html', {"best_seller": best_seller})
