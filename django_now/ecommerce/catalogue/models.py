@@ -24,3 +24,23 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+
+
+class Testimonials(models.Model):
+	name = models.CharField(max_length = 50)
+	description = models.CharField(max_length = 300)
+	image = models.ImageField(upload_to = 'testimonials', blank = True, null = True)
+	profession = models.CharField(max_length = 40)
+	rating = models.IntegerField(default = 0)
+
+	def __str__(self):
+		return self.name
+
+	@property
+	def rate_list(self):
+		white  = 5 - len(list(range(self.rating)))
+		return {"green":list(range(self.rating)), 'white': list(range(white))}
+
+	
