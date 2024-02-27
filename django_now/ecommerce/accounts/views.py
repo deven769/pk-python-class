@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import SignupForm, LoginForm
 from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 
@@ -37,3 +37,9 @@ def user_login(request):
 			error = 'Crediential didnt match'
 		return render(request, 'accounts/login.html', {'form':form, 'error':error})
 
+
+
+# logout page
+def user_logout(request):
+    logout(request)
+    return redirect('accounts:login')

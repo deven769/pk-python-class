@@ -15,7 +15,7 @@
                         <div class="text-center">
                             <img src="img/fruite-item-1.jpg" class="img-fluid rounded" alt="">
                             <div class="py-4">
-                                <a href="#" class="h5">{{i.name}}</a>
+                                <a href="{% url 'client:product-detail' i.id%}" class="h5">{{i.name}}</a>
                                 <div class="d-flex my-3 justify-content-center">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
