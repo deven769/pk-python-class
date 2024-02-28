@@ -7,10 +7,11 @@
 </head>
 <body>
 		<h1>Login Form</h1>
-		{{error}}
+		{{error}} 
 		<form method="post" action="{%url 'accounts:login'%}">
 			{%csrf_token%}
 			{{form.as_p}}
+			<input type="hidden" name="next_url" value="{{next_url}}">
 			<input type="submit" value='Login'>
 		</form>
 

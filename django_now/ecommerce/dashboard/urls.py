@@ -6,5 +6,8 @@ urlpatterns = [
 	
 	path('', dashboard, name = 'dashboard'),
 	path('category-list/', categoryList, name = 'category-list'),
-	path('category-create/', createCategory, name = 'category-create')
+	path('category-create/', createCategory, name = 'category-create'),
+	path('category-update/<int:pk>/', updateCategory, name = "category-update"),
+	path('category-delete/<int:pk>/', deleteCategory, name = "category-delete"),
+
 ]

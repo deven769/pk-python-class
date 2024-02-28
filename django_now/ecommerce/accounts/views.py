@@ -20,8 +20,9 @@ def signup(request):
 
 def user_login(request):
 	if request.method == 'GET':
+		next_url = request.GET.get('next')
 		form = LoginForm()
-		return render(request, 'accounts/login.html', {'form':form})
+		return render(request, 'accounts/login.html', {'form':form, 'next_url':next_url})
 	
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
@@ -31,8 +32,12 @@ def user_login(request):
 			username = data.get('username')
 			password = data.get('password')
 			user = authenticate(request, username = username, password = password)
+			next_url = request.POST.get('next_url')
+			print(next_url, '-----------------')
 			if user:
 				login(request, user)
+				if next_url:
+					return redirect(next_url)
 				return redirect('catalogue:index')
 			error = 'Crediential didnt match'
 		return render(request, 'accounts/login.html', {'form':form, 'error':error})
