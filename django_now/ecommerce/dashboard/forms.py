@@ -1,5 +1,5 @@
 from django import forms
-from catalogue.models import Category
+from catalogue.models import Category, Product
 from django.core.exceptions import ValidationError
 
 
@@ -19,3 +19,9 @@ class CategoryForm(forms.ModelForm):
 		if Category.objects.filter(name = name).exists():
 			raise ValidationError('Name Already exists =-----')
 		return data
+
+
+class ProductForm(forms.ModelForm):
+	class Meta:
+		model = Product
+		fields = '__all__'

@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from catalogue.models import Category
-from .forms import CategoryForm
+from catalogue.models import Category, Product
+from .forms import CategoryForm, ProductForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 
@@ -12,7 +15,7 @@ def dashboard(request):
 		return render(request, 'dashboard/dashboard.html')
 
 
-@user_passes_test(lambda u:u.is_superuser)
+@user_passes_test(lambda u:u.is_staff)
 def categoryList(request):
 	if request.method == 'GET':
 		category = Category.objects.all()
@@ -56,10 +59,20 @@ def deleteCategory(request, pk):
 
 
 
-# class CategoryCreate(CreateView):
-#     form_class = CategoryForm
-#     template_name = 'dashboard/category_create.html'
-#     success_url = reverse_lazy('dashboard:category-list')
+class ProductList(UserPassesTestMixin, ListView):
+	model = Product
+	template_name = 'dashboard/product-list.html'
+	context_object_name = 'products'
+
+	def test_func(self):
+		return self.request.user.is_staff or self.request.user.is_superuser
+    
+
+
+class ProductCreate(UserPassesTestMixin, CreateView):
+    form_class = ProductForm
+    template_name = 'dashboard/product-create.html'
+    success_url = reverse_lazy('dashboard:product-list')
     
 
 
