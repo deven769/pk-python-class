@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -43,4 +44,31 @@ class Testimonials(models.Model):
 		white  = 5 - len(list(range(self.rating)))
 		return {"green":list(range(self.rating)), 'white': list(range(white))}
 
-	
+
+
+class Cart(models.Model):
+	user  = models.OneToOneField(User, related_name = 'user_cart', on_delete = models.CASCADE)
+
+class CartItem(models.Model):
+	cart = models.ForeignKey(Cart, related_name = 'cart_items', on_delete = models.CASCADE)
+	product = models.ForeignKey(Product, related_name = 'product_cart', on_delete = models.CASCADE)
+	quanity = models.IntegerField(default = 1)
+
+# Address
+
+
+# class Order(models.Model):
+# 	order_number = 
+# 	user  = models.OneToMany(User, related_name = 'user_cart', on_delete = models.CASCADE)
+# 	address = 
+# 	status 
+# 	payment_status = 
+# 	payment_method = 
+
+
+# class OrderItem(models.Model):
+# 	order = models.ForeignKey
+# 	product = models.ForeignKey
+# 	paroduct_name = models
+# 	price = 
+# 	quantity = 
