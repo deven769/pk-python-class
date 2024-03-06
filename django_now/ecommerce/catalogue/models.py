@@ -49,10 +49,32 @@ class Testimonials(models.Model):
 class Cart(models.Model):
 	user  = models.OneToOneField(User, related_name = 'user_cart', on_delete = models.CASCADE)
 
+	@classmethod
+	def get_Total_count(cls, user):
+		count = 0
+		for i in CartItem.objects.filter(cart__user = user):
+			print('---------------------------')
+			count += i.quanity
+		print(count, '=======================')
+		return count
+
+	@classmethod
+	def get_total(cls, user):
+		total = 0
+		for i in CartItem.objects.filter(cart__user = user):
+			total += i.getTotal #i.quanity * i.product.price
+		return total
+
+
 class CartItem(models.Model):
 	cart = models.ForeignKey(Cart, related_name = 'cart_items', on_delete = models.CASCADE)
 	product = models.ForeignKey(Product, related_name = 'product_cart', on_delete = models.CASCADE)
 	quanity = models.IntegerField(default = 1)
+
+	@property
+	def getTotal(self):
+		return self.product.price * self.quanity
+
 
 # Address
 
