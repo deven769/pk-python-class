@@ -79,7 +79,7 @@ class CartItem(models.Model):
 # Address
 
 
-# class Order(models.Model):
+# class Order(models.Model):\
 # 	order_number = 
 # 	user  = models.OneToMany(User, related_name = 'user_cart', on_delete = models.CASCADE)
 # 	address = 
